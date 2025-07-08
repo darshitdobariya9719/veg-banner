@@ -2,6 +2,24 @@ import React, { useState, useRef, useEffect } from "react";
 import html2canvas from "html2canvas";
 import basketImage from "./assets/veg-basket.png";
 import whatsappIcon from "./assets/WhatsApp.png";
+const vegImages = {
+  Bhindi: require("./assets/vegetables/Bhindi.png"),
+  Choli: require("./assets/vegetables/Choli.png"),
+  Flower: require("./assets/vegetables/Flower.png"),
+  Cabbage: require("./assets/vegetables/Cabbage.png"),
+  Guvar: require("./assets/vegetables/Guvar.png"),
+  SpongeGourd: require("./assets/vegetables/SpongeGourd.png"),
+  Dudhi: require("./assets/vegetables/Dudhi.png"),
+  // Onion: require("./assets/vegetables/Onion.png"),
+  // Tomato: require("./assets/vegetables/Tomato.png"),
+  // Carrot: require("./assets/vegetables/Carrot.png"),
+  // Potato: require("./assets/vegetables/Potato.png"),
+  Chili: require("./assets/vegetables/Chili.png"),
+  Onion: "",
+  Tomato: "",
+  Carrot: "",
+  Potato: "",
+};
 
 const useMediaQuery = (query) => {
   const [matches, setMatches] = useState(
@@ -53,11 +71,11 @@ export default function VegetableBanner() {
     Guvar: { en: "Cluster Beans", gu: "ગવાર", ex: "તાજો" },
     SpongeGourd: { en: "Sponge Gourd", gu: "તુરીયા ", ex: "તાજા" },
     Dudhi: { en: "Bottle Gourd", gu: "દૂધી", ex: "તાજી" },
-    Onion: { en: "Onion", gu: "ડુંગળી", ex: "તાજી" },
-    Tomato: { en: "Tomato", gu: "ટામેટા", ex: "તાજા" },
-    Carrot: { en: "Carrot", gu: "ગાજર", ex: "તાજા" },
-    Potato: { en: "Potato", gu: "બટાટા", ex: "તાજા" },
     Chili: { en: "Chili", gu: "મરચાં", ex: "તાજાં" },
+    // Onion: { en: "Onion", gu: "ડુંગળી", ex: "તાજી" },
+    // Tomato: { en: "Tomato", gu: "ટામેટા", ex: "તાજા" },
+    // Carrot: { en: "Carrot", gu: "ગાજર", ex: "તાજા" },
+    // Potato: { en: "Potato", gu: "બટાટા", ex: "તાજા" },
   };
 
   const getVegEmoji = (veg) => {
@@ -222,6 +240,11 @@ export default function VegetableBanner() {
             <div ref={bannerRef} style={styles.bannerBox}>
               {/* Header */}
               <div style={styles.bannerHeader}>
+                <img
+                  src={basketImage}
+                  alt="Basket"
+                  style={styles.headerImage}
+                />
                 <div style={styles.title}>
                   {getVegEmoji(selectedVeg)}{" "}
                   {language === "gu" && (
@@ -237,7 +260,12 @@ export default function VegetableBanner() {
               </div>
 
               {/* Basket Image */}
-              <img src={basketImage} alt="Basket" style={styles.image} />
+              {/* <img src={basketImage} alt="Basket" style={styles.image} /> */}
+              <img
+                src={vegImages[selectedVeg]}
+                alt={selectedVeg}
+                style={styles.image}
+              />
 
               {/* Vegetable Name */}
               <div style={styles.vegLine}>
@@ -444,6 +472,14 @@ const styles = {
     color: "#e63946",
     fontWeight: "600",
     marginTop: "4px",
+  },
+
+  headerImage: {
+    width: "100%",
+    maxWidth: "100px",
+    borderRadius: "12px",
+    margin: "0px auto",
+    display: "block",
   },
 
   image: {
