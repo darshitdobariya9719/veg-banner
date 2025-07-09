@@ -285,9 +285,9 @@ export default function VegetableBanner() {
                     🧺 {p.quantity} - ₹{p.price}
                   </div>
                 ))}
-                <div style={styles.deliveryLine}>
+                {/* <div style={styles.deliveryLine}>
                   {translations[language].delivered}
-                </div>
+                </div> */}
                 <div style={styles.orderLine}>
                   {translations[language].order} <br />
                   <div
