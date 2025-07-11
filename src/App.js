@@ -65,7 +65,7 @@ export default function VegetableBanner() {
   };
 
   const vegNameMap = {
-    Bhindi: { en: "Okra", gu: "ભીંડા", ex: "તાજા" },
+    Bhindi: { en: "Okra", gu: "ભીંડા", ex: "ઓર્ગેનિક તાજા" },
     Choli: { en: "Field Beans", gu: "ચોળી", ex: "તાજી" },
     Flower: { en: "Cauliflower", gu: "ફ્લાવર", ex: "તાજા" },
     Cabbage: { en: "Cabbage", gu: "કોબી", ex: "તાજી" },
