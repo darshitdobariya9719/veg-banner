@@ -38,6 +38,7 @@ const useMediaQuery = (query) => {
 
 export default function VegetableBanner() {
   const [selectedVeg, setSelectedVeg] = useState("Bhindi");
+  const [isPriceShow, setIsPriceShow] = useState(true);
   const [whatsappNumber, setWhatsappNumber] = useState("9723765314");
   const [language, setLanguage] = useState("en");
   const [location, setLocation] = useState("Nikol");
@@ -111,7 +112,7 @@ export default function VegetableBanner() {
     if (!location || !selectedVeg)
       return alert("Please enter location and select vegetable");
     const validPrices = prices.filter((p) => p.quantity && p.price);
-    if (validPrices.length === 0)
+    if (validPrices.length === 0 && isPriceShow !== false)
       return alert("Add at least one price variant");
 
     const text =
@@ -185,7 +186,17 @@ export default function VegetableBanner() {
             />
           </div>
         ))}
-
+        <div style={styles.priceSwitcher}>
+          <label htmlFor="showPrices" style={styles.languageLabel}>
+            Show Prices:
+          </label>
+          <input
+            type="checkbox"
+            id="showPrices"
+            checked={isPriceShow}
+            onChange={(e) => setIsPriceShow(e.target.checked)}
+          />
+        </div>
         <button onClick={addPriceRow} style={styles.addBtn}>
           + Add More Price
         </button>
@@ -280,11 +291,12 @@ export default function VegetableBanner() {
 
               {/* Price List */}
               <div style={styles.bannerBody}>
-                {prices.map((p, i) => (
-                  <div key={i} style={styles.priceLine}>
-                    🧺 {p.quantity} - ₹{p.price}
-                  </div>
-                ))}
+                {isPriceShow &&
+                  prices.map((p, i) => (
+                    <div key={i} style={styles.priceLine}>
+                      🧺 {p.quantity} - ₹{p.price}
+                    </div>
+                  ))}
                 {/* <div style={styles.deliveryLine}>
                   {translations[language].delivered}
                 </div> */}
@@ -361,6 +373,12 @@ const styles = {
     display: "flex",
     gap: "10px",
     marginBottom: "10px",
+  },
+  priceSwitcher: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    margin: "10px",
   },
   inputHalf: {
     flex: 1,
